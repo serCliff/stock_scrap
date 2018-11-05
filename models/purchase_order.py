@@ -57,4 +57,6 @@ class SaleConfigSettings(models.TransientModel):
                 if len(seller_id):
                     price = seller_id.price
             product_id.write({'standard_price': price})
+            product_id.standard_price = price
+            self.env.cr.commit()
             print(product_id.name + " -> " + str(price))
