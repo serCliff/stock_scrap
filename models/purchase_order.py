@@ -31,6 +31,7 @@ class Product(models.Model):
                 if len(seller_id):
                     price = seller_id.price
             product_id.standard_price = price
+            print(product_id.name + " -> "+ str(price))
 
 class StockScrap(models.Model):
     _inherit = "stock.scrap"
