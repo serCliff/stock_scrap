@@ -26,7 +26,7 @@ class Product(models.Model):
             have_purchases = self.env['purchase.order.line'].search([('product_id', '=', product_id.id)], order='id desc', limit=1)
             if len(have_purchases):
                 price = have_purchases.price_unit
-            else:
+            if price <= 0.0:
                 seller_id = self.env['product.supplierinfo'].search([('product_id', '=', product_id.id)], order='id desc', limit=1)
                 if len(seller_id):
                     price = product_id.seller_id.price
