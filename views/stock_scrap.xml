@@ -17,7 +17,7 @@
               <field name="model">sale.config.settings</field>
               <field name="inherit_id" ref="sales_team.view_sale_config_settings"/>
               <field name="arch" type="xml">
-                    <xpath expr="//group[0]"
+                    <xpath expr="//group"
                       position="after">
                             <group string="Product Costs">
                                  <button name="action_set_costs" string="Set Costs" type="object" class="oe_stat_button"/>
