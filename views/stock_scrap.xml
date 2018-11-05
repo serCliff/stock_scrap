@@ -12,5 +12,18 @@
                     </xpath>
               </field>
         </record>
+        <record model="ir.ui.view" id="cost_product_set">
+              <field name="name">Set Costs</field>
+              <field name="model">sale.config.settings</field>
+              <field name="inherit_id" ref="sales_team.view_sale_config_settings"/>
+              <field name="arch" type="xml">
+                    <xpath expr="//group[0]"
+                      position="after">
+                            <group string="Product Costs">
+                                 <button name="action_set_costs" string="Set Costs" type="object" class="oe_stat_button"/>
+                            </group>
+                    </xpath>
+              </field>
+        </record>
     </data>
 </odoo>

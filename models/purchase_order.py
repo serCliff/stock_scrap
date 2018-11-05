@@ -30,10 +30,31 @@ class Product(models.Model):
                 seller_id = self.env['product.supplierinfo'].search([('product_tmpl_id', '=', product_id.id)], order='id desc', limit=1)
                 if len(seller_id):
                     price = seller_id.price
-            product_id.standard_price = price
+            product_id.write({'standard_price': price})
             print(product_id.name + " -> "+ str(price))
+
 
 class StockScrap(models.Model):
     _inherit = "stock.scrap"
 
     cost = fields.Float(string="Precio de Coste", related="product_id.standard_price")
+
+
+class SaleConfigSettings(models.Model):
+    _inherit = "sale.config.settings"
+
+    @api.multi
+    def action_set_costs(self):
+        for product_id in self.env['product.template'].search([]):
+            price = 0.0
+            have_purchases = self.env['purchase.order.line'].search([('product_id', '=', product_id.id)],
+                                                                    order='id desc', limit=1)
+            if len(have_purchases):
+                price = have_purchases.price_unit
+            if price <= 0.0:
+                seller_id = self.env['product.supplierinfo'].search([('product_tmpl_id', '=', product_id.id)],
+                                                                    order='id desc', limit=1)
+                if len(seller_id):
+                    price = seller_id.price
+            product_id.write({'standard_price': price})
+            print(product_id.name + " -> " + str(price))
