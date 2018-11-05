@@ -40,7 +40,7 @@ class StockScrap(models.Model):
     cost = fields.Float(string="Precio de Coste", related="product_id.standard_price")
 
 
-class SaleConfigSettings(models.Model):
+class SaleConfigSettings(models.TransientModel):
     _inherit = "sale.config.settings"
 
     @api.multi
