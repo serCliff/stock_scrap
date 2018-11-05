@@ -27,9 +27,9 @@ class Product(models.Model):
             if len(have_purchases):
                 price = have_purchases.price_unit
             if price <= 0.0:
-                seller_id = self.env['product.supplierinfo'].search([('product_id', '=', product_id.id)], order='id desc', limit=1)
+                seller_id = self.env['product.supplierinfo'].search([('product_tmpl_id', '=', product_id.id)], order='id desc', limit=1)
                 if len(seller_id):
-                    price = product_id.seller_id.price
+                    price = seller_id.price
             product_id.standard_price = price
 
 class StockScrap(models.Model):
