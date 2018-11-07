@@ -8,7 +8,7 @@
               <field name="arch" type="xml">
                     <xpath expr="//field[@name='product_id']"
                       position="after">
-                            <field name="cost" groups="purchase.group_purchase_manager" readonly="True"/>
+                            <field name="cost" groups="purchase.group_manage_vendor_price" readonly="True"/>
                     </xpath>
               </field>
         </record>
